@@ -1,0 +1,85 @@
+extends layout
+
+block content
+  .container
+    .table-responsive
+        table.table
+          |Statistics
+          thead
+            th BMI
+            th Old Weight
+            th Weight Gained
+            th Current Weight
+          tbody(ng-repeat='u in usersList' ng-show='usersList.length > 0')
+            tr
+              td {{u.bmi | number:2 }}
+              td {{u.weight}}
+              td {{u.weightGained}}
+              td {{u.weight}}
+    form.form-inline.usersform(ng-submit="addUser()")
+      .row
+        .col-lg-4
+          .form-group
+            label(for='exampleInputName2') Name
+            input#exampleInputName2.form-control(type='text', placeholder='Jane Doe' ng-model='name')
+        .col-lg-4
+          .form-group
+            label(for='exampleInputEmail2') Weight
+            input#exampleInputEmail2.form-control(type='number', placeholder='200' ng-model='weight')
+      .row
+        .col-lg-4
+          .form-group
+            label(for='exampleInputName2') Age
+            input#exampleInputName2.form-control(type='number', placeholder='25' ng-model='age')
+        .col-lg-4
+          .form-group
+            label(for='exampleInputEmail2') Height (inches)
+            input#exampleInputEmail2.form-control(type='number', placeholder='74' ng-model='height')
+      .row
+        .col-lg-4
+          .form-group
+            label(for='exampleInputName2') Gender
+            input#exampleInputName2.form-control(type='text', placeholder='Male/female' ng-model='gender')
+        .col-lg-4
+          .form-group
+            label(for='exampleInputEmail2') Unit
+            input#exampleInputEmail2.form-control(type='text', placeholder='meters' ng-model='unit')
+      button.btn.btn-danger(type='submit') Send User
+    form.form-inline.mealsform(ng-submit="addMeal()")
+      .form-group
+      div.container
+        div.row
+          div.col-md-12
+            div Desription
+            input.form-control(type='text', placeholder='Input field' ng-model='desc')
+            div Meal
+            input.form-control(type='text', placeholder='Input field' ng-model='meal')
+        div.row
+          div.col-md-4
+            div Calories
+            input.form-control(type='number', placeholder='Input field' ng-model='calories')
+            div Servings
+            input.form-control(type='number', placeholder='Input field' ng-model='servings')
+        button.btn.btn-primary(type='submit') Save Food
+    .table-responsive.mealtable
+      table.table
+        |Statistics
+        thead
+          th Edit
+          th Delete
+          th Description
+          th Meal
+          th Calories
+          th Servings
+          th Date
+        tbody(ng-repeat="food in meals", ng-show="(meals.length > 0)")
+          tr
+            td
+              button.btn.btn-primary(type='submit' ng-click='editMeal=='true' Edit
+            td
+              button.btn.btn-danger(type='submit' ng-click='deleteMeal') Delete
+            td(contenteditable="{{ editMeal ?  'true' : 'false'}}") {{desc}}
+            td {{meal}}
+            td {{calories}}
+            td {{servings}}
+            td {{date | date: 'shortDate' }}
