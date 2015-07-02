@@ -1,3 +1,5 @@
+
+
 var app = angular.module("quotesApp", []);
 
 app.controller("MainCtrl", function($scope) {
@@ -16,6 +18,7 @@ app.controller("MainCtrl", function($scope) {
       unit: $scope.unit,
       bmi: ($scope.weight * 703) / Math.pow($scope.height, 2)
     })
+//    $scope.fbRef.push()
     $scope.name = "";
     $scope.weight = "";
     $scope.age = "";
@@ -34,5 +37,12 @@ app.controller("MainCtrl", function($scope) {
       date: new Date()
     })
     console.log($scope.meals)
+  }
+  $scope.deleteMeal = function () {
+    var index = $scope.meals.indexOf(item);
+    $scope.meals.splice(index, 1);
+  }
+  $scope.edit = function() {
+    editMeal = true;
   }
 });

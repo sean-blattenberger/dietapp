@@ -44,7 +44,7 @@ block content
           .form-group
             label(for='exampleInputEmail2') Unit
             input#exampleInputEmail2.form-control(type='text', placeholder='meters' ng-model='unit')
-      button.btn.btn-danger(type='submit') Send User
+      button.btn.btn-danger(type='submit' action='/user' method='post') Send User
     form.form-inline.mealsform(ng-submit="addMeal()")
       .form-group
       div.container
@@ -60,7 +60,7 @@ block content
             input.form-control(type='number', placeholder='Input field' ng-model='calories')
             div Servings
             input.form-control(type='number', placeholder='Input field' ng-model='servings')
-        button.btn.btn-primary(type='submit') Save Food
+        button.btn.btn-primary(type='submit' method='POST' action='/') Save Food
     .table-responsive.mealtable
       table.table
         |Statistics
@@ -75,9 +75,9 @@ block content
         tbody(ng-repeat="food in meals", ng-show="(meals.length > 0)")
           tr
             td
-              button.btn.btn-primary(type='submit' ng-click='editMeal=='true' Edit
+              button.btn.btn-primary(type='submit' ng-click='edit()') Edit
             td
-              button.btn.btn-danger(type='submit' ng-click='deleteMeal') Delete
+              button.btn.btn-danger(type='submit' ng-click='deleteMeal()') Delete
             td(contenteditable="{{ editMeal ?  'true' : 'false'}}") {{desc}}
             td {{meal}}
             td {{calories}}
